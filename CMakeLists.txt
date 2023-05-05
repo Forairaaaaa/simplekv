@@ -1,11 +1,20 @@
 
-set(SIMPLEKV_SRCS
-   "simplekv.cpp"
-    "value_convert.cpp"
-)
+set(SIMPLEKV_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR})
 
-add_library(simplekv ${SIMPLEKV_SRCS})
+if (ESP_PLATFORM)
+    include(${CMAKE_CURRENT_LIST_DIR}/cmake/esp.cmake)
+else()
 
-target_include_directories(simplekv PUBLIC
-    "."
-)
+    set(SIMPLEKV_SRCS
+    "simplekv.cpp"
+        "value_convert.cpp"
+    )
+
+    add_library(simplekv ${SIMPLEKV_SRCS})
+
+    target_include_directories(simplekv PUBLIC
+        "."
+    )
+
+endif()
+
