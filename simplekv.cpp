@@ -14,6 +14,13 @@
 namespace SIMPLEKV {
 
 
+    std::string SimpleKV::GetKey(uint32_t item)
+    {
+        if (item >= _value_list.size()) {
+            item = _value_list.size();
+        }
+        return _value_list[item].key;
+    }
 
 
     
