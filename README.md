@@ -15,12 +15,14 @@ SIMPLEKV::SimpleKV db;
 db.Add<int>("Age", 666);
 printf("Age: %d\n", db.Get("Age")->value<int>());
 // > Age: 666
+
 db.Put<int>("Age", -777);
 printf("Age: %d\n", db.Get("Age")->value<int>());
 // > Age: -777
 
 db.Add<float>("float", 6.666);
 db.Add<double>("double", 2333.3333333333);
+
 printf("%f\n", db.Get("float")->value<float>());
 // > 6.666000
 printf("%.10f\n", db.Get("double")->value<double>());
@@ -32,6 +34,7 @@ printf("%.10f\n", db.Get("double")->value<double>());
 ```cpp
 uint16_t data[10] = {0, 3, 6, 9, 12, 15, 18, 21, 24, 27};
 db.Add("Data", data);
+
 for (int i = 0; i < 10; i++) {
     printf("%d ", db.Get("Data")->value<uint16_t*>()[i]);
 }
