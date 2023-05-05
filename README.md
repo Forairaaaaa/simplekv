@@ -61,8 +61,9 @@ printf("%d %.2f %s\n", my_type_temp.a, my_type_temp.b, my_type_temp.status.c_str
 my_type_temp = db.Get("MyType_2")->value<MyType_t>();
 printf("%d %.2f %s\n", my_type_temp.a, my_type_temp.b, my_type_temp.status.c_str());
 // > -22 -2.22 wohao
+```
 
-
+```cpp
 /* << Bug >>: Add like this causes string become the same, don't know why */
 db.Add("MyType_3", my_type_1);
 db.Add("MyType_4", my_type_2);
