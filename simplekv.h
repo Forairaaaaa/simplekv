@@ -32,6 +32,8 @@ namespace SIMPLEKV {
         int16_t to_int16();
         int32_t to_int32();
         int64_t to_int64();
+        float to_float();
+        double to_double();
         std::string to_string();
 
         uint8_t* to_uint8_ptr();
@@ -42,6 +44,8 @@ namespace SIMPLEKV {
         int16_t* to_int16_ptr();
         int32_t* to_int32_ptr();
         int64_t* to_int64_ptr();
+        float* to_float_ptr();
+        double* to_double_ptr();
         std::string* to_string_ptr();
         
     };
@@ -85,6 +89,8 @@ namespace SIMPLEKV {
             inline int Add(const char* key, int16_t value) { return Add(key, &value, sizeof(int16_t)); }
             inline int Add(const char* key, int32_t value) { return Add(key, &value, sizeof(int32_t)); }
             inline int Add(const char* key, int64_t value) { return Add(key, &value, sizeof(int64_t)); }
+            inline int Add(const char* key, float value) { return Add(key, &value, sizeof(float)); }
+            inline int Add(const char* key, double value) { return Add(key, &value, sizeof(double)); }
             inline int Add(const char* key, std::string value) { return Add(key, &value, sizeof(std::string)); }
 
             inline int Add(const char* key, uint8_t* value) { return Add(key, &value, sizeof(uint8_t*)); }
@@ -95,6 +101,8 @@ namespace SIMPLEKV {
             inline int Add(const char* key, int16_t* value) { return Add(key, &value, sizeof(int16_t*)); }
             inline int Add(const char* key, int32_t* value) { return Add(key, &value, sizeof(int32_t*)); }
             inline int Add(const char* key, int64_t* value) { return Add(key, &value, sizeof(int64_t*)); }
+            inline int Add(const char* key, float* value) { return Add(key, &value, sizeof(float*)); }
+            inline int Add(const char* key, double* value) { return Add(key, &value, sizeof(double*)); }
             inline int Add(const char* key, std::string* value) { return Add(key, &value, sizeof(std::string*)); }
 
 
@@ -106,6 +114,8 @@ namespace SIMPLEKV {
             inline int Put(const char* key, int16_t value) { return Put(key, &value, sizeof(int16_t)); }
             inline int Put(const char* key, int32_t value) { return Put(key, &value, sizeof(int32_t)); }
             inline int Put(const char* key, int64_t value) { return Put(key, &value, sizeof(int64_t)); }
+            inline int Put(const char* key, float value) { return Put(key, &value, sizeof(float)); }
+            inline int Put(const char* key, double value) { return Put(key, &value, sizeof(double)); }
             inline int Put(const char* key, std::string value) { return Put(key, &value, sizeof(std::string)); }
 
             inline int Put(const char* key, uint8_t* value) { return Put(key, &value, sizeof(uint8_t*)); }
@@ -116,6 +126,8 @@ namespace SIMPLEKV {
             inline int Put(const char* key, int16_t* value) { return Put(key, &value, sizeof(int16_t*)); }
             inline int Put(const char* key, int32_t* value) { return Put(key, &value, sizeof(int32_t*)); }
             inline int Put(const char* key, int64_t* value) { return Put(key, &value, sizeof(int64_t*)); }
+            inline int Put(const char* key, float* value) { return Put(key, &value, sizeof(float*)); }
+            inline int Put(const char* key, double* value) { return Put(key, &value, sizeof(double*)); }
             inline int Put(const char* key, std::string* value) { return Put(key, &value, sizeof(std::string*)); }
             
     };

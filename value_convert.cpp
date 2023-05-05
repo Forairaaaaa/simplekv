@@ -88,6 +88,24 @@ namespace SIMPLEKV {
     }
 
 
+    float ValueInfo_t::to_float()
+    {
+        if (OK2Convert(sizeof(float))) {
+            return 0;
+        }
+        return *(float*)this->addr;
+    }
+
+
+    double ValueInfo_t::to_double()
+    {
+        if (OK2Convert(sizeof(double))) {
+            return 0;
+        }
+        return *(double*)this->addr;
+    }
+
+
     std::string ValueInfo_t::to_string()
     {
         if (OK2Convert(sizeof(std::string))) {
@@ -166,6 +184,24 @@ namespace SIMPLEKV {
             return nullptr;
         }
         return *(int64_t**)this->addr;
+    }
+
+
+    float* ValueInfo_t::to_float_ptr()
+    {
+        if (OK2Convert(sizeof(float*))) {
+            return nullptr;
+        }
+        return *(float**)this->addr;
+    }
+
+
+    double* ValueInfo_t::to_double_ptr()
+    {
+        if (OK2Convert(sizeof(double*))) {
+            return nullptr;
+        }
+        return *(double**)this->addr;
     }
 
 
