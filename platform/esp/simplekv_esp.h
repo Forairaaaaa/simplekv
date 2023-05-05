@@ -22,7 +22,7 @@ namespace SIMPLEKV {
         private:
             bool _use_psram;
 
-            /* Memory API override */
+            /* malloc overide */
             void* _malloc(size_t size);
 
 
@@ -33,6 +33,9 @@ namespace SIMPLEKV {
             bool UsingPSRAM() { return _use_psram; }
 
 
+
+
+            
 
 
     };

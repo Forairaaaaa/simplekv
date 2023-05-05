@@ -24,30 +24,15 @@ namespace SIMPLEKV {
         void* addr = nullptr;
 
 
-        uint8_t to_uint8();
-        uint16_t to_uint16();
-        uint32_t to_uint32();
-        uint64_t to_uint64();
-        int8_t to_int8();
-        int16_t to_int16();
-        int32_t to_int32();
-        int64_t to_int64();
-        float to_float();
-        double to_double();
-        std::string to_string();
+        /* Value convert */
+        template<typename T>
+        T value() {
+            if ((this->addr == nullptr) || (this->size < sizeof(T))) {
+                return 0;
+            }
+            return *(T*)this->addr;
+        }
 
-        uint8_t* to_uint8_ptr();
-        uint16_t* to_uint16_ptr();
-        uint32_t* to_uint32_ptr();
-        uint64_t* to_uint64_ptr();
-        int8_t* to_int8_ptr();
-        int16_t* to_int16_ptr();
-        int32_t* to_int32_ptr();
-        int64_t* to_int64_ptr();
-        float* to_float_ptr();
-        double* to_double_ptr();
-        std::string* to_string_ptr();
-        
     };
     
 
@@ -81,57 +66,12 @@ namespace SIMPLEKV {
             int Delete(const char* key);
             void DeleteAll();
 
-
-            /* Wrap of type convertion */
-            inline int Add(const char* key, uint8_t value) { return Add(key, &value, sizeof(uint8_t)); }
-            inline int Add(const char* key, uint16_t value) { return Add(key, &value, sizeof(uint16_t)); }
-            inline int Add(const char* key, uint32_t value) { return Add(key, &value, sizeof(uint32_t)); }
-            inline int Add(const char* key, uint64_t value) { return Add(key, &value, sizeof(uint64_t)); }
-            inline int Add(const char* key, int8_t value) { return Add(key, &value, sizeof(int8_t)); }
-            inline int Add(const char* key, int16_t value) { return Add(key, &value, sizeof(int16_t)); }
-            inline int Add(const char* key, int32_t value) { return Add(key, &value, sizeof(int32_t)); }
-            inline int Add(const char* key, int64_t value) { return Add(key, &value, sizeof(int64_t)); }
-            inline int Add(const char* key, float value) { return Add(key, &value, sizeof(float)); }
-            inline int Add(const char* key, double value) { return Add(key, &value, sizeof(double)); }
-            inline int Add(const char* key, std::string value) { return Add(key, &value, sizeof(std::string)); }
-
-            inline int Add(const char* key, uint8_t* value) { return Add(key, &value, sizeof(uint8_t*)); }
-            inline int Add(const char* key, uint16_t* value) { return Add(key, &value, sizeof(uint16_t*)); }
-            inline int Add(const char* key, uint32_t* value) { return Add(key, &value, sizeof(uint32_t*)); }
-            inline int Add(const char* key, uint64_t* value) { return Add(key, &value, sizeof(uint64_t*)); }
-            inline int Add(const char* key, int8_t* value) { return Add(key, &value, sizeof(int8_t*)); }
-            inline int Add(const char* key, int16_t* value) { return Add(key, &value, sizeof(int16_t*)); }
-            inline int Add(const char* key, int32_t* value) { return Add(key, &value, sizeof(int32_t*)); }
-            inline int Add(const char* key, int64_t* value) { return Add(key, &value, sizeof(int64_t*)); }
-            inline int Add(const char* key, float* value) { return Add(key, &value, sizeof(float*)); }
-            inline int Add(const char* key, double* value) { return Add(key, &value, sizeof(double*)); }
-            inline int Add(const char* key, std::string* value) { return Add(key, &value, sizeof(std::string*)); }
-
-
-            inline int Put(const char* key, uint8_t value) { return Put(key, &value, sizeof(uint8_t)); }
-            inline int Put(const char* key, uint16_t value) { return Put(key, &value, sizeof(uint16_t)); }
-            inline int Put(const char* key, uint32_t value) { return Put(key, &value, sizeof(uint32_t)); }
-            inline int Put(const char* key, uint64_t value) { return Put(key, &value, sizeof(uint64_t)); }
-            inline int Put(const char* key, int8_t value) { return Put(key, &value, sizeof(int8_t)); }
-            inline int Put(const char* key, int16_t value) { return Put(key, &value, sizeof(int16_t)); }
-            inline int Put(const char* key, int32_t value) { return Put(key, &value, sizeof(int32_t)); }
-            inline int Put(const char* key, int64_t value) { return Put(key, &value, sizeof(int64_t)); }
-            inline int Put(const char* key, float value) { return Put(key, &value, sizeof(float)); }
-            inline int Put(const char* key, double value) { return Put(key, &value, sizeof(double)); }
-            inline int Put(const char* key, std::string value) { return Put(key, &value, sizeof(std::string)); }
-
-            inline int Put(const char* key, uint8_t* value) { return Put(key, &value, sizeof(uint8_t*)); }
-            inline int Put(const char* key, uint16_t* value) { return Put(key, &value, sizeof(uint16_t*)); }
-            inline int Put(const char* key, uint32_t* value) { return Put(key, &value, sizeof(uint32_t*)); }
-            inline int Put(const char* key, uint64_t* value) { return Put(key, &value, sizeof(uint64_t*)); }
-            inline int Put(const char* key, int8_t* value) { return Put(key, &value, sizeof(int8_t*)); }
-            inline int Put(const char* key, int16_t* value) { return Put(key, &value, sizeof(int16_t*)); }
-            inline int Put(const char* key, int32_t* value) { return Put(key, &value, sizeof(int32_t*)); }
-            inline int Put(const char* key, int64_t* value) { return Put(key, &value, sizeof(int64_t*)); }
-            inline int Put(const char* key, float* value) { return Put(key, &value, sizeof(float*)); }
-            inline int Put(const char* key, double* value) { return Put(key, &value, sizeof(double*)); }
-            inline int Put(const char* key, std::string* value) { return Put(key, &value, sizeof(std::string*)); }
             
+            /* Wrap of type */
+            template<typename T>
+            inline int Add(const char* key, T value) { return Add(key, &value, sizeof(T)); }
+            template<typename T>
+            inline int Put(const char* key, T value) { return Put(key, &value, sizeof(T)); }
     };
 
 
