@@ -6,4 +6,3 @@ if (ESP_PLATFORM)
 else()
     include(${CMAKE_CURRENT_LIST_DIR}/cmake/basic.cmake)
 endif()
-
