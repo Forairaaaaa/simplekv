@@ -56,10 +56,11 @@ namespace SIMPLEKV {
             std::vector<ValueInfo_t> _value_list;
             ValueInfo_t _ret_buffer;
 
+        protected:
             /* Memory API */
-            inline void _free(void* ptr) { free(ptr); }
-            inline void* _malloc(size_t size) { return malloc(size); }
-            inline void* _memcpy(void* __restrict__ dest, const void* __restrict__ src, size_t n) { return memcpy(dest, src, n); }
+            virtual void _free(void* ptr) { free(ptr); }
+            virtual void* _malloc(size_t size) { return malloc(size); }
+            virtual void* _memcpy(void* __restrict__ dest, const void* __restrict__ src, size_t n) { return memcpy(dest, src, n); }
 
 
         public:
@@ -70,6 +71,7 @@ namespace SIMPLEKV {
             inline size_t Size() { return _value_list.size(); }
             std::string GetKey(uint32_t item);
             bool Exist(const char* key);
+            size_t MemoryUsage();
 
 
             /* Basic data operation */

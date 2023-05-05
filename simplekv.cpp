@@ -33,6 +33,16 @@ namespace SIMPLEKV {
         return false;
     }
 
+
+    size_t SimpleKV::MemoryUsage()
+    {
+        size_t ret = 0;
+        for (auto i : _value_list) {
+            ret += i.size;
+        }
+        return ret;
+    }
+
     
     int SimpleKV::Add(const char* key, void* value, size_t size)
     {

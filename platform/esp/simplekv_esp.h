@@ -14,3 +14,27 @@
 #include <freertos/semphr.h>
 
 
+namespace SIMPLEKV {
+
+
+    class SimpleKV_ESP : public SimpleKV {
+
+        private:
+            bool _use_psram;
+
+            /* Memory API override */
+            void* _malloc(size_t size);
+
+
+        public:
+            SimpleKV_ESP(bool usePSRAM = false) { _use_psram = usePSRAM; }
+            ~SimpleKV_ESP() {}
+
+            bool UsingPSRAM() { return _use_psram; }
+
+
+
+
+    };
+
+}
