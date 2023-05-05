@@ -28,7 +28,7 @@ namespace SIMPLEKV {
         template<typename T>
         T value() {
             if ((this->addr == nullptr) || (this->size < sizeof(T))) {
-                return 0;
+                return T();
             }
             return *(T*)this->addr;
         }
@@ -69,9 +69,9 @@ namespace SIMPLEKV {
             
             /* Wrap of type */
             template<typename T>
-            inline int Add(const char* key, T value) { return Add(key, &value, sizeof(T)); }
+            inline int Add(const char* key, T value) { return Add(key, (void*)&value, sizeof(T)); }
             template<typename T>
-            inline int Put(const char* key, T value) { return Put(key, &value, sizeof(T)); }
+            inline int Put(const char* key, T value) { return Put(key, (void*)&value, sizeof(T)); }
     };
 
 
