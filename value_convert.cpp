@@ -16,7 +16,7 @@
 namespace SIMPLEKV {
 
 
-    uint8_t ValueInfo_t::to_uint8_t()
+    uint8_t ValueInfo_t::to_uint8()
     {
         if (OK2Convert(sizeof(uint8_t))) {
             return 0;
@@ -25,7 +25,7 @@ namespace SIMPLEKV {
     }
 
 
-    uint16_t ValueInfo_t::to_uint16_t()
+    uint16_t ValueInfo_t::to_uint16()
     {
         if (OK2Convert(sizeof(uint16_t))) {
             return 0;
@@ -34,7 +34,7 @@ namespace SIMPLEKV {
     }
 
 
-    uint32_t ValueInfo_t::to_uint32_t()
+    uint32_t ValueInfo_t::to_uint32()
     {
         if (OK2Convert(sizeof(uint32_t))) {
             return 0;
@@ -43,7 +43,7 @@ namespace SIMPLEKV {
     }
 
 
-    uint64_t ValueInfo_t::to_uint64_t()
+    uint64_t ValueInfo_t::to_uint64()
     {
         if (OK2Convert(sizeof(uint64_t))) {
             return 0;
@@ -52,7 +52,7 @@ namespace SIMPLEKV {
     }
 
 
-    int8_t ValueInfo_t::to_int8_t()
+    int8_t ValueInfo_t::to_int8()
     {
         if (OK2Convert(sizeof(int8_t))) {
             return 0;
@@ -61,7 +61,7 @@ namespace SIMPLEKV {
     }
 
 
-    int16_t ValueInfo_t::to_int16_t()
+    int16_t ValueInfo_t::to_int16()
     {
         if (OK2Convert(sizeof(int16_t))) {
             return 0;
@@ -70,7 +70,7 @@ namespace SIMPLEKV {
     }
 
 
-    int32_t ValueInfo_t::to_int32_t()
+    int32_t ValueInfo_t::to_int32()
     {
         if (OK2Convert(sizeof(int32_t))) {
             return 0;
@@ -79,12 +79,102 @@ namespace SIMPLEKV {
     }
 
 
-    int64_t ValueInfo_t::to_int64_t()
+    int64_t ValueInfo_t::to_int64()
     {
         if (OK2Convert(sizeof(int64_t))) {
             return 0;
         }
         return *(int64_t*)this->addr;
+    }
+
+
+    std::string ValueInfo_t::to_string()
+    {
+        if (OK2Convert(sizeof(std::string))) {
+            return "";
+        }
+        return *(std::string*)this->addr;
+    }
+
+
+    uint8_t* ValueInfo_t::to_uint8_ptr()
+    {
+        if (OK2Convert(sizeof(uint8_t*))) {
+            return nullptr;
+        }
+        return *(uint8_t**)this->addr;
+    }
+
+
+    uint16_t* ValueInfo_t::to_uint16_ptr()
+    {
+        if (OK2Convert(sizeof(uint16_t*))) {
+            return nullptr;
+        }
+        return *(uint16_t**)this->addr;
+    }
+
+
+    uint32_t* ValueInfo_t::to_uint32_ptr()
+    {
+        if (OK2Convert(sizeof(uint32_t*))) {
+            return nullptr;
+        }
+        return *(uint32_t**)this->addr;
+    }
+
+
+    uint64_t* ValueInfo_t::to_uint64_ptr()
+    {
+        if (OK2Convert(sizeof(uint64_t*))) {
+            return nullptr;
+        }
+        return *(uint64_t**)this->addr;
+    }
+
+
+    int8_t* ValueInfo_t::to_int8_ptr()
+    {
+        if (OK2Convert(sizeof(int8_t*))) {
+            return nullptr;
+        }
+        return *(int8_t**)this->addr;
+    }
+
+
+    int16_t* ValueInfo_t::to_int16_ptr()
+    {
+        if (OK2Convert(sizeof(int16_t*))) {
+            return nullptr;
+        }
+        return *(int16_t**)this->addr;
+    }
+
+
+    int32_t* ValueInfo_t::to_int32_ptr()
+    {
+        if (OK2Convert(sizeof(int32_t*))) {
+            return nullptr;
+        }
+        return *(int32_t**)this->addr;
+    }
+
+
+    int64_t* ValueInfo_t::to_int64_ptr()
+    {
+        if (OK2Convert(sizeof(int64_t*))) {
+            return nullptr;
+        }
+        return *(int64_t**)this->addr;
+    }
+
+
+    std::string* ValueInfo_t::to_string_ptr()
+    {
+        if (OK2Convert(sizeof(std::string*))) {
+            return nullptr;
+        }
+        return *(std::string**)this->addr;
     }
 
 

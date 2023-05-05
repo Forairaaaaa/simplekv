@@ -23,19 +23,29 @@ namespace SIMPLEKV {
         size_t size = 0;
         void* addr = nullptr;
 
-        uint8_t to_uint8_t();
-        uint16_t to_uint16_t();
-        uint32_t to_uint32_t();
-        uint64_t to_uint64_t();
 
-        int8_t to_int8_t();
-        int16_t to_int16_t();
-        int32_t to_int32_t();
-        int64_t to_int64_t();
+        uint8_t to_uint8();
+        uint16_t to_uint16();
+        uint32_t to_uint32();
+        uint64_t to_uint64();
+        int8_t to_int8();
+        int16_t to_int16();
+        int32_t to_int32();
+        int64_t to_int64();
+        std::string to_string();
+
+        uint8_t* to_uint8_ptr();
+        uint16_t* to_uint16_ptr();
+        uint32_t* to_uint32_ptr();
+        uint64_t* to_uint64_ptr();
+        int8_t* to_int8_ptr();
+        int16_t* to_int16_ptr();
+        int32_t* to_int32_ptr();
+        int64_t* to_int64_ptr();
+        std::string* to_string_ptr();
         
     };
     
-
 
     class SimpleKV {
         private:
@@ -55,20 +65,60 @@ namespace SIMPLEKV {
 
             inline size_t Size() { return _value_list.size(); }
             std::string GetKey(uint32_t item);
+            bool Exist(const char* key);
 
 
             /* Basic data operation */
-            int Add(const char* key, size_t size);
+            int Add(const char* key, void* value, size_t size);
             int Put(const char* key, void* value, size_t size);
             ValueInfo_t* Get(const char* key);
             int Delete(const char* key);
             void DeleteAll();
 
 
+            /* Wrap of type convertion */
+            inline int Add(const char* key, uint8_t value) { return Add(key, &value, sizeof(uint8_t)); }
+            inline int Add(const char* key, uint16_t value) { return Add(key, &value, sizeof(uint16_t)); }
+            inline int Add(const char* key, uint32_t value) { return Add(key, &value, sizeof(uint32_t)); }
+            inline int Add(const char* key, uint64_t value) { return Add(key, &value, sizeof(uint64_t)); }
+            inline int Add(const char* key, int8_t value) { return Add(key, &value, sizeof(int8_t)); }
+            inline int Add(const char* key, int16_t value) { return Add(key, &value, sizeof(int16_t)); }
+            inline int Add(const char* key, int32_t value) { return Add(key, &value, sizeof(int32_t)); }
+            inline int Add(const char* key, int64_t value) { return Add(key, &value, sizeof(int64_t)); }
+            inline int Add(const char* key, std::string value) { return Add(key, &value, sizeof(std::string)); }
+
+            inline int Add(const char* key, uint8_t* value) { return Add(key, &value, sizeof(uint8_t*)); }
+            inline int Add(const char* key, uint16_t* value) { return Add(key, &value, sizeof(uint16_t*)); }
+            inline int Add(const char* key, uint32_t* value) { return Add(key, &value, sizeof(uint32_t*)); }
+            inline int Add(const char* key, uint64_t* value) { return Add(key, &value, sizeof(uint64_t*)); }
+            inline int Add(const char* key, int8_t* value) { return Add(key, &value, sizeof(int8_t*)); }
+            inline int Add(const char* key, int16_t* value) { return Add(key, &value, sizeof(int16_t*)); }
+            inline int Add(const char* key, int32_t* value) { return Add(key, &value, sizeof(int32_t*)); }
+            inline int Add(const char* key, int64_t* value) { return Add(key, &value, sizeof(int64_t*)); }
+            inline int Add(const char* key, std::string* value) { return Add(key, &value, sizeof(std::string*)); }
 
 
+            inline int Put(const char* key, uint8_t value) { return Put(key, &value, sizeof(uint8_t)); }
+            inline int Put(const char* key, uint16_t value) { return Put(key, &value, sizeof(uint16_t)); }
+            inline int Put(const char* key, uint32_t value) { return Put(key, &value, sizeof(uint32_t)); }
+            inline int Put(const char* key, uint64_t value) { return Put(key, &value, sizeof(uint64_t)); }
+            inline int Put(const char* key, int8_t value) { return Put(key, &value, sizeof(int8_t)); }
+            inline int Put(const char* key, int16_t value) { return Put(key, &value, sizeof(int16_t)); }
+            inline int Put(const char* key, int32_t value) { return Put(key, &value, sizeof(int32_t)); }
+            inline int Put(const char* key, int64_t value) { return Put(key, &value, sizeof(int64_t)); }
+            inline int Put(const char* key, std::string value) { return Put(key, &value, sizeof(std::string)); }
+
+            inline int Put(const char* key, uint8_t* value) { return Put(key, &value, sizeof(uint8_t*)); }
+            inline int Put(const char* key, uint16_t* value) { return Put(key, &value, sizeof(uint16_t*)); }
+            inline int Put(const char* key, uint32_t* value) { return Put(key, &value, sizeof(uint32_t*)); }
+            inline int Put(const char* key, uint64_t* value) { return Put(key, &value, sizeof(uint64_t*)); }
+            inline int Put(const char* key, int8_t* value) { return Put(key, &value, sizeof(int8_t*)); }
+            inline int Put(const char* key, int16_t* value) { return Put(key, &value, sizeof(int16_t*)); }
+            inline int Put(const char* key, int32_t* value) { return Put(key, &value, sizeof(int32_t*)); }
+            inline int Put(const char* key, int64_t* value) { return Put(key, &value, sizeof(int64_t*)); }
+            inline int Put(const char* key, std::string* value) { return Put(key, &value, sizeof(std::string*)); }
+            
     };
-
 
 
 }

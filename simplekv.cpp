@@ -23,24 +23,35 @@ namespace SIMPLEKV {
     }
 
 
-    
-    int SimpleKV::Add(const char* key, size_t size)
+    bool SimpleKV::Exist(const char* key)
     {
-        /* If already exist */
         for (auto i : _value_list) {
             if (i.key == key) {
-                return -1;
+                return true;
             }
         }
+        return false;
+    }
 
+    
+    int SimpleKV::Add(const char* key, void* value, size_t size)
+    {
+        if (Exist(key) || (size == 0)) {
+            return -1;
+        }
+        
+        /* Create */
         ValueInfo_t new_item;
         new_item.key = key;
         new_item.size = size;
+
+        /* Store */
         new_item.addr = _malloc(size);
+        _memcpy(new_item.addr, value, size);
+
         _value_list.push_back(new_item);
         return 0;
     }
-
 
 
     int SimpleKV::Put(const char* key, void* value, size_t size)
@@ -56,11 +67,8 @@ namespace SIMPLEKV {
                 return 0;
             }
         }
-
         return -1;
     }
-
-
 
 
     ValueInfo_t* SimpleKV::Get(const char* key)
@@ -80,9 +88,6 @@ namespace SIMPLEKV {
     }
 
 
-
-
-
     int SimpleKV::Delete(const char* key)
     {
         for (auto iter = _value_list.begin(); iter != _value_list.end(); iter++) {
@@ -99,9 +104,6 @@ namespace SIMPLEKV {
     }
 
 
-
-
-
     void SimpleKV::DeleteAll()
     {
         /* Free memory */
@@ -110,13 +112,6 @@ namespace SIMPLEKV {
         }
         std::vector<ValueInfo_t>().swap(_value_list);
     }
-
-
-
-
-
-
-
 
 
 }
